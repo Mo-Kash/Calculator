@@ -1,139 +1,108 @@
 let operandstr = "";
 let displaystr = "";
-var operator;
-let operand1 = 0;
-let operand2 = 0;
+const operatorarr = [];
 const operandarr = [];
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
-const three = document.querySelector("#three");
-const four = document.querySelector("#four");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
-const seven = document.querySelector("#seven");
-const eight = document.querySelector("#eight");
-const nine = document.querySelector("#nine");
-const zero = document.querySelector("#zero");
-const plus = document.querySelector("#plus");
-const minus = document.querySelector("#minus");
-const multiply = document.querySelector("#multiply");
-const divide = document.querySelector("#divide");
-const clear = document.querySelector("#clear");
+const nums = document.querySelectorAll("#number");
+const ops = document.querySelectorAll("#operator");
 const equals = document.querySelector("#equals");
-
-
-// function operators(x){
-//     operator = x.value;
-//     if(operand1===0){
-//         operand1 = parseInt(operandstr);
-//     }
-//     else{
-//         operand2 = parseInt(operandstr);
-//     }
-//     operandstr = "";
-//     display(x);
-// }
-
-// function operands(x){
-//     operandstr = operandstr + x.value;
-//     console.log(operandstr);
-//     display(x);
-// }
-
-// function display(x){
-//     if(x.value==='+'){
-//         displaystr = displaystr + ' + ';
-//     }
-//     else if(x.value==='-'){
-//         displaystr = displaystr + ' - ';
-//     }
-//     else if(x.value==='*'){
-//         displaystr = displaystr + ' x ';
-//     }
-//     else if(x.value==='/'){
-//         displaystr = displaystr + ' ÷ ';
-//     }
-//     else{
-//         displaystr = displaystr + x.value;
-//     }
-//     console.log(displaystr);
-// }
+const clear = document.querySelector("#clear");
+const output = document.querySelector(".output");
+const del = document.querySelector("#delete");
+const dot = document.querySelector("#decimal");
+var result;
 
 function operate(a,b,op){
-    if(op==='plus'){
+    if(op==='+'){
         return a+b;
     }
-    else if(op==='minus'){
+    else if(op==='-'){
         return a-b;
     }
-    else if(op==='multiply'){
+    else if(op==='x'){
         return a*b;
     }
-    else if(op==='divide'){
+    else if(op==='÷'){
+        if(b==0){
+            return "divbyzero";
+        }
         return a/b;
     }
 }
 
-
-
-one.addEventListener('click', ()=>{
-    operandstr = operandstr + "1";
-});
-two.addEventListener('click', ()=>{
-    operandstr = operandstr + "2";
-});
-three.addEventListener('click', ()=>{
-    operandstr = operandstr + "3";
-});
-four.addEventListener('click', ()=>{
-    operandstr = operandstr + "4";
-});
-five.addEventListener('click', ()=>{
-    operandstr = operandstr + "5";
-});
-six.addEventListener('click', ()=>{
-    operandstr = operandstr + "6";
-});
-seven.addEventListener('click', ()=>{
-    operandstr = operandstr + "7";
-});
-eight.addEventListener('click', ()=>{
-    operandstr = operandstr + "8";
-});
-nine.addEventListener('click', ()=>{
-    operandstr = operandstr + "9";
-});
-zero.addEventListener('click', ()=>{
-    operandstr = operandstr + "0";
+nums.forEach((i)=>{
+    i.addEventListener('click',(e)=>{
+        operandstr = operandstr + e.target.value;
+        displaystr = " " + displaystr + e.target.value;
+        output.textContent = displaystr;
+        console.log(displaystr);
+        console.log(operandarr);
+    });
 });
 
-plus.addEventListener('click', ()=>{
-    operator = "plus";
-    operandarr.push(parseInt(operandstr));
-    operandstr = "";
-
+ops.forEach((i)=>{
+    i.addEventListener('click',(e)=>{
+        operatorarr.push(e.target.value);
+        displaystr = displaystr + " " + e.target.value + " ";
+        if(operandstr!=""){
+            operandarr.push(parseFloat(operandstr));
+        }
+        operandstr = "";
+        output.textContent = displaystr;
+    });
 });
-minus.addEventListener('click', ()=>{
-    operator = "minus";
-    operandarr.push(parseInt(operandstr));
-    operandstr = "";
-
-});
-multiply.addEventListener('click', ()=>{
-    operator = "multiply";
-    operandarr.push(parseInt(operandstr));
-    operandstr = "";
-
-});
-divide.addEventListener('click', ()=>{
-    operator = "divide";
-    operandarr.push(parseInt(operandstr));
-    operandstr = "";
-
-});
-
 
 equals.addEventListener('click',()=>{
-    operandarr.push(parseInt(operandstr));
-    console.log(operate(operandarr[0],operandarr[1],operator));
+    operandarr.push(parseFloat(operandstr));
+    console.log(displaystr);
+    for(var i=1;i<operandarr.length;i++)
+    {
+        result = operate(operandarr[i-1],operandarr[i],operatorarr[i-1]).toFixed(2);
+        operandarr[i] = result;
+    }
+    output.textContent = result;
+    while(operandarr.length!=0){
+        operandarr.pop();
+    }
+    while(operatorarr.length!=0){
+        operatorarr.pop();
+    }
+    operandarr.push(result);
+    displaystr = result;
+    operandstr = "";
+    console.log(operandarr);    
+    console.log(result);
+});
+
+clear.addEventListener('click',()=>{
+    while(operandarr.length!=0){
+        operandarr.pop();
+    }
+    while(operatorarr.length!=0){
+        operatorarr.pop();
+    }
+    operandstr = "";
+    displaystr = "0";
+    output.textContent = displaystr;
+    displaystr = "";
+});
+
+del.addEventListener('click',()=>{
+    if(operandstr===""){
+        displaystr = displaystr.trim();
+        displaystr = displaystr.replace(displaystr[displaystr.length - 1],"");
+        operatorarr.pop();
+    }
+    else{
+        displaystr = displaystr.replace(displaystr[displaystr.length - 1],"");
+        operandstr = operandstr.replace(operandstr[operandstr.length - 1],"");
+    }
+    output.textContent = displaystr;
+});
+
+dot.addEventListener('click', ()=>{
+    if(operandstr.includes(".")){
+        return;
+    }
+    operandstr = operandstr + ".";
+    displaystr = displaystr + ".";
 });
