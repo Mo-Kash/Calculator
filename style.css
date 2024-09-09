@@ -13,20 +13,29 @@
     width: 350px;
     border: none;
     margin-top: 175px;
-    outline: 20px solid black;
+    outline: 15px solid black;
     border-radius:10px;
     background-color: dimgray;
 }
 
 .display{
     height: 125px;
-    width: 250px;
+    width: 325px;
     margin-top: 25px;
-    margin-left: 50px;
-    margin-right:50px;
+    margin-left: 25px;
+    margin-right:25px;
     margin-bottom: 0px;
     outline: 2px solid black;
-    background-color: gray;
+    border-radius: 4px;
+    background-color:rgb(228, 240, 240);
+    text-align: right;
+    font-size: 32px;
+    font-family: monospace;
+}
+
+.output{
+    margin-right: 10px;
+    margin-top: 50px;
 }
 
 .buttons{
@@ -34,18 +43,60 @@
     justify-content: space-around;
     align-items: center;
     flex-wrap:wrap;
-    height: 300px;
-    width: 300px;
-    outline: 2px solid black;
+    height: 325px;
+    width: 325px;
     margin-top: 0px;
     margin-left:25px;
     margin-right:25px;
-    background-color: gray;
+    background-color: dimgray;
 }
 
 input{
     text-decoration: none;
     padding: 10px 30px;
     border: 1px solid black;
+    border-radius: 4px;
     cursor: pointer;
+    transition-duration: 0.2s;
+    background-color:ghostwhite;
+}
+
+input:hover{
+    background-color: rgb(207, 204, 204);
+}
+
+#operator,#equals,#decimal{
+    background-color: peru;
+    transition-duration: 0.2s;
+}
+
+#operator:hover{
+    background-color: rgb(207, 118, 29);
+}
+
+#equals:hover{
+    background-color: rgb(207, 118, 29);
+}
+
+#decimal:hover{
+    background-color: rgb(207, 118, 29);
+}
+
+#clear{
+    padding: 20px 60px;
+    background-color: rgb(245, 215, 175);
+    transition-duration: 0.2s;
+}
+#clear:hover{
+    background-color: rgb(238, 184, 114);
+}
+
+#delete{
+    padding: 20px 60px;
+    background-color: rgb(153, 84, 84);
+    transition-duration: 0.2s;
+}
+
+#delete:hover{
+    background-color: rgb(109, 53, 53);
 }
