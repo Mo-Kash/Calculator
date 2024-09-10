@@ -56,7 +56,7 @@ equals.addEventListener('click',()=>{
     console.log(displaystr);
     for(var i=1;i<operandarr.length;i++)
     {
-        result = operate(operandarr[i-1],operandarr[i],operatorarr[i-1]).toFixed(2);
+        result = Math.round(operate(operandarr[i-1],operandarr[i],operatorarr[i-1])*1000)/1000;
         operandarr[i] = result;
     }
     output.textContent = result;
