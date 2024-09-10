@@ -34,8 +34,6 @@ nums.forEach((i)=>{
         operandstr = operandstr + e.target.value;
         displaystr = " " + displaystr + e.target.value;
         output.textContent = displaystr;
-        console.log(displaystr);
-        console.log(operandarr);
     });
 });
 
@@ -69,8 +67,6 @@ equals.addEventListener('click',()=>{
     operandarr.push(result);
     displaystr = result;
     operandstr = "";
-    console.log(operandarr);    
-    console.log(result);
 });
 
 clear.addEventListener('click',()=>{
@@ -105,4 +101,5 @@ dot.addEventListener('click', ()=>{
     }
     operandstr = operandstr + ".";
     displaystr = displaystr + ".";
+    output.textContent = displaystr;
 });
