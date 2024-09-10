@@ -13,9 +13,10 @@
     width: 350px;
     border: none;
     margin-top: 175px;
-    outline: 15px solid black;
     border-radius:10px;
     background-color: dimgray;
+
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 16px, rgba(0, 0, 0, 0.3) 0px 10px 16px -5px, rgba(0, 0, 0, 0.2) 0px -5px 0px inset;
 }
 
 .display{
@@ -31,6 +32,8 @@
     text-align: right;
     font-size: 32px;
     font-family: monospace;
+
+    box-shadow: rgb(74, 74, 75) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 .output{
@@ -49,6 +52,7 @@
     margin-left:25px;
     margin-right:25px;
     background-color: dimgray;
+    
 }
 
 input{
@@ -59,10 +63,12 @@ input{
     cursor: pointer;
     transition-duration: 0.2s;
     background-color:ghostwhite;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 input:hover{
     background-color: rgb(207, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -5px, rgba(0, 0, 0, 0.2) 0px -5px 0px inset;
 }
 
 #operator,#equals,#decimal{
